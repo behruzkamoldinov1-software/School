@@ -1,0 +1,1060 @@
+/* ==========================================================================
+   1. ОБЩИЕ СТИЛИ И СБРОС (С самого начала)
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Ограничитель ширины сайта */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* ==========================================================================
+   2. СТИЛИ ШАПКИ (Header)
+   ========================================================================== */
+.main-header {
+    background-color: #ffffff;
+    padding: 15px 0;
+    /* Убрали лишние position, чтобы баннер мог на него накладываться */
+    z-index: 100;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-placeholder {
+    width: 60px;
+    height: 60px;
+    background-color: #0b3a60;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    color: #11294a;
+    font-size: 14px;
+    line-height: 1.3;
+}
+
+.meta-area {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 13px;
+    color: #4a5568;
+}
+
+.contact-link {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s ease;
+}
+
+.contact-link:hover {
+    opacity: 0.8;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.font-icon {
+    font-size: 14px;
+    color: #718096;
+}
+
+.phone-color {
+    color: #c53030;
+}
+
+.header-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #4a5568;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.2s;
+}
+
+.icon-btn:hover {
+    color: #0b3a60;
+}
+
+.header-line {
+    border: 0;
+    height: 1px;
+    background-color: #e2e8f0;
+    margin: 15px 0;
+}
+
+/* ==========================================================================
+   3. НАВИГАЦИЯ (Центрированная)
+   ========================================================================== */
+.main-nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    list-style: none;
+}
+
+.main-nav > ul > li {
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #1a202c;
+    font-weight: 700;
+    font-size: 15px;
+    transition: color 0.2s;
+}
+
+.main-nav > ul > li > a:hover {
+    color: #0b3a60;
+}
+
+/* Выпадающие меню */
+.main-nav .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    border-top: 3px solid #0b3a60;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 200; /* Чтобы меню открывалось поверх баннера */
+}
+
+.main-nav .dropdown li {
+    width: 100%;
+}
+
+.main-nav .dropdown a {
+    display: block;
+    padding: 10px 15px;
+    color: #4a5568;
+    font-weight: 500;
+    font-size: 14px;
+    border-bottom: 1px solid #f7fafc;
+    transition: background 0.2s, color 0.2s, padding-left 0.2s;
+}
+
+.main-nav .dropdown li:last-child a {
+    border-bottom: none;
+}
+
+.main-nav .dropdown a:hover {
+    background-color: #f7fafc;
+    color: #0b3a60;
+    padding-left: 20px;
+}
+
+.main-nav .has-dropdown:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.main-nav > ul > li:nth-last-child(1) .dropdown,
+.main-nav > ul > li:nth-last-child(2) .dropdown {
+    left: auto;
+    right: 0;
+}
+
+/* ==========================================================================
+    4. ИСПРАВЛЕННЫЙ БАННЕР (Hero Section) И ПЛАВАЮЩИЕ КНОПКИ
+   ========================================================================== */
+.hero-banner {
+    position: relative; /* Кнопки будут позиционироваться относительно этого блока */
+    width: 100%;
+    height: 600px; /* Фиксированная высота баннера */
+    overflow: visible; /* Позволяет карточкам выходить за нижний край */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-content-wrapper {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(23, 23, 71, 0.75) 0%, rgba(68, 48, 115, 0.75) 100%);
+    z-index: 1;
+}
+
+/* Фоновая картинка (пока временная) */
+.hero-image-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=1920');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 16px;
+    color: #ffffff;
+    line-height: 1.6;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+/* Стрелки слайдера */
+.slider-arrow {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 15;
+}
+
+.arrow-left {
+    left: 20px;
+}
+
+.arrow-right {
+    right: 20px;
+}
+
+.slider-arrow:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-50%) scale(1.05);
+}
+
+/* ==========================================================================
+    5. ПЛАВАЮЩИЕ ЦВЕТНЫЕ КАРТОЧКИ (ИСПРАВЛЕННЫЕ)
+   ========================================================================== */
+.floating-cards-wrapper {
+    position: absolute;
+    bottom: -80px; /* Сдвигаем пониже, так как блок стал объемнее */
+    left: 0;
+    width: 100%;
+    z-index: 30;
+}
+
+/* Общая темно-бирюзовая подложка */
+.floating-cards-inner {
+    background-color: #06404f; /* Точный темно-бирюзовый цвет */
+    padding: 30px 40px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* Левый блок с годом */
+.cards-year-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #ffffff;
+    flex-shrink: 0;
+}
+
+.cards-year-info h2 {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 1px;
+}
+
+/* Маленькие белые круглые стрелочки */
+.year-arrow-btn {
+    width: 35px;
+    height: 35px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    color: #06404f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.year-arrow-btn:hover {
+    background-color: #e2e8f0;
+}
+
+/* Правая стрелка */
+.cards-right-arrow {
+    flex-shrink: 0;
+}
+
+/* Сетка для 3-х цветных карточек */
+.quick-cards-grid {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+    max-width: 750px;
+}
+
+/* Общий стиль карточки (теперь элементы идут сверху вниз!) */
+.quick-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column; /* Иконка над текстом */
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 20px 10px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    text-align: center;
+    /* Эффект 3D-объема снизу, как на скрине */
+    box-shadow: inset 0 -5px 0 rgba(0, 0, 0, 0.2); 
+}
+
+.quick-card:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.1);
+}
+
+/* Иконки внутри цветных карточек */
+.quick-card .card-icon {
+    font-size: 36px; /* Крупные иконки */
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Текст внутри карточек */
+.quick-card .card-title {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* ТОЧНЫЕ ЦВЕТА КАРТОЧЕК С МАКЕТА */
+.card-green {
+    background-color: #72cb3b; /* Яркий салатово-зеленый */
+}
+
+.card-red {
+    background-color: #e65c53; /* Мягкий кораллово-красный */
+}
+
+.card-blue {
+    background-color: #4dd0e1; /* Неоново-голубой */
+}
+/* ==========================================================================
+   6. СЕКЦИЯ НОВОСТЕЙ (YANGILIKLAR)
+   ========================================================================== */
+.news-section {
+    background-color: #f8fafc; /* Легкий светлый фон для контраста */
+    padding: 140px 0 60px 0;   /* Верхний отступ большой, чтобы плавающие карточки не перекрывали текст */
+}
+
+/* Стили заголовка секции */
+.section-title-wrapper {
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #0b2f4c;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Синяя полоска под заголовком */
+.title-underline {
+    width: 60px;
+    height: 4px;
+    background-color: #0077b6;
+    border-radius: 2px;
+}
+
+/* Сетка Flexbox для 4-х карточек */
+.news-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+/* Карточка новости */
+.news-card {
+    flex: 1;
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Контейнер для картинки */
+.news-img-box {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+}
+
+.news-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Картинка адаптируется и не сжимается искусственно */
+    transition: transform 0.5s ease;
+}
+
+.news-card:hover .news-img {
+    transform: scale(1.05); /* Легкий зум картинки при наведении */
+}
+
+/* Контентная часть карточки */
+.news-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Чтобы тело занимало всё свободное пространство */
+}
+
+/* Дата публикации */
+.news-date {
+    font-size: 12px;
+    color: #94a3b8;
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Текст новости */
+.news-text {
+    font-size: 14px;
+    color: #334155;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex-grow: 1;
+    /* Ограничение текста до 3-х строк, если он слишком длинный */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Нижняя часть карточки со стрелочкой */
+.news-footer {
+    display: flex;
+    justify-content: flex-end; /* Стрелка уходит в правый угол */
+}
+
+/* Синяя круглая стрелочка */
+.news-arrow {
+    width: 35px;
+    height: 35px;
+    background-color: #0b2f4c;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.news-card:hover .news-arrow {
+    background-color: #0077b6; /* Меняет цвет на голубой при наведении на карту */
+    transform: translateX(3px); /* Слегка дергается вправо */
+}
+/* ==========================================================================
+   ФИНАЛЬНЫЙ СТИЛЬ: СЧЕТЧИКИ В РЯД С ОРИГИНАЛЬНЫМИ КАРТИНКАМИ
+   ========================================================================== */
+.school-counters-section {
+    background-color: #0b2f4c !important; 
+    padding: 35px 0 !important;
+    width: 100% !important;
+}
+
+/* Выравнивание всех блоков строго в одну линию */
+.counters-container {
+    display: flex !important;
+    flex-direction: row !important; 
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100%;
+}
+
+/* Карточка счетчика (картинка + текст рядышком) */
+.counter-box {
+    display: flex !important;
+    flex-direction: row !important; 
+    align-items: center !important;
+    gap: 18px !important; 
+}
+
+/* Стили для картинок-иконок */
+.c-img-icon {
+    width: 42px !important;  
+    height: 42px !important;
+    object-fit: contain !important;
+    display: block !important;
+}
+
+/* Блок с цифрами */
+.c-text {
+    display: flex !important;
+    flex-direction: column !important; 
+    align-items: flex-start !important; 
+}
+
+.c-number {
+    font-size: 28px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+}
+
+.c-label {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: rgba(255, 255, 255, 0.7) !important; 
+    text-transform: uppercase !important;
+    margin-top: 5px !important;
+    letter-spacing: 0.5px !important;
+}
+
+/* Вертикальные разделительные полосы между блоками */
+.c-divider {
+    width: 1px !important;
+    height: 40px !important;
+    background-color: rgba(255, 255, 255, 0.15) !important; 
+}
+/* ==========================================================================
+   8. СЕКЦИЯ ИНТЕРАКТИВНОЙ ПЛИТКИ (TILES)
+   ========================================================================== */
+.tiles-section {
+    background-color: #f8fafc;
+    padding: 60px 0;
+}
+
+/* Главная обертка: делим на две равные части (левый квадрат и правая группа) */
+.tiles-grid {
+    display: flex;
+    gap: 20px;
+    height: 500px; /* Фиксированная высота всего блока */
+}
+
+/* Левая большая плитка */
+.tile-large {
+    flex: 1;
+    height: 100%;
+}
+
+/* Правая группа плиток */
+.tiles-right-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+}
+
+/* Длинная плитка сверху */
+.tile-long {
+    height: 180px;
+}
+
+/* Нижний ряд из двух маленьких плиток */
+.tiles-right-bottom {
+    display: flex;
+    gap: 20px;
+    flex: 1; /* Забирает оставшуюся высоту */
+}
+
+.tile-square {
+    flex: 1;
+    height: 100%;
+}
+
+/* ОБЩИЕ СТИЛИ ДЛЯ ВСЕХ ПЛИТОК */
+.tile-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Задний фон с картинкой */
+.tile-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+    z-index: 1;
+}
+
+/* Затемняющий слой поверх картинки, чтобы белый текст читался */
+.tile-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(11, 47, 76, 0.4); /* Синеватое легкое затемнение */
+    transition: background-color 0.3s ease;
+    z-index: 2;
+}
+
+/* Текст внутри плитки */
+.tile-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    padding: 20px;
+}
+
+.tile-content h3 {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* ЭФФЕКТЫ ПРИ НАВЕДЕНИИ (HOVER) */
+.tile-item:hover .tile-bg {
+    transform: scale(1.06); /* Картинка плавно увеличивается */
+}
+
+.tile-item:hover .tile-overlay {
+    background: rgba(11, 47, 76, 0.65); /* Фон становится темнее и насыщеннее */
+}
+/* ==========================================================================
+   НОВЫЙ ТОЧНЫЙ СТИЛЬ ДЛЯ СЧЕТЧИКОВ (В КУЧУ И В РЯД)
+   ========================================================================== */
+.school-counters-section {
+    background-color: #0b2f4c !important; /* Жестко задаем темно-синий фон */
+    padding: 30px 0 !important;
+    width: 100% !important;
+}
+
+/* Главный контейнер: заставляет всё встать в ОДНУ ЛИНИЮ */
+.counters-container {
+    display: flex !important;
+    flex-direction: row !important; /* Строго горизонтально */
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100%;
+}
+
+/* Каждая отдельная карточка внутри */
+.counter-box {
+    display: flex !important;
+    flex-direction: row !important; /* Иконка и текст стоят рядом, а не друг под другом */
+    align-items: center !important;
+    gap: 15px !important; /* Отступ между иконкой и цифрой */
+}
+
+/* Голубая аккуратная иконка, как на макете */
+.counter-box .c-icon {
+    font-size: 32px !important;
+    color: #4dd0e1 !important; /* Тот самый красивый голубой цвет */
+    display: inline-block !important;
+}
+
+/* Блок для текста */
+.c-text {
+    display: flex !important;
+    flex-direction: column !important; /* Цифра строго НАД надписью */
+    align-items: flex-start !important; /* Выравнивание по левому краю */
+}
+
+/* Большие белые цифры */
+.c-number {
+    font-size: 28px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+}
+
+/* Мелкие подписи */
+.c-label {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: rgba(255, 255, 255, 0.7) !important; /* Полупрозрачный белый */
+    text-transform: uppercase !important;
+    margin-top: 4px !important;
+    letter-spacing: 0.5px !important;
+}
+
+/* Вертикальные разделительные палочки */
+.c-divider {
+    width: 1px !important;
+    height: 40px !important;
+    background-color: rgba(255, 255, 255, 0.2) !important; /* Неяркая белая линия */
+}
+/* ==========================================================================
+   9. ПОДВАЛ САЙТА (FOOTER)
+   ========================================================================== */
+.main-footer {
+    background-color: #0b2f4c; /* Тот же глубокий синий цвет, что и у счетчиков */
+    color: #ffffff;
+    padding: 50px 0 20px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Легкая полоса стыка со счетчиками */
+}
+
+/* Сетка для 3-х колонок подвала */
+.footer-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Линия над копирайтом */
+}
+
+.footer-col {
+    flex: 1;
+}
+
+/* --- 1 Колонка: Логотип и соцсети --- */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.f-logo-circle {
+    width: 45px;
+    height: 45px;
+    background-color: #ffffff;
+    color: #0b2f4c;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.f-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.f-logo-text strong {
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+.f-logo-text span {
+    font-size: 11px;
+    opacity: 0.7;
+}
+
+.footer-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    opacity: 0.8;
+    margin-bottom: 20px;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 12px;
+}
+
+.social-link {
+    width: 35px;
+    height: 35px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+.social-link:hover {
+    background-color: #4dd0e1; /* Меняет цвет на голубой, как у иконок счетчиков */
+    color: #0b2f4c;
+    transform: translateY(-3px);
+}
+
+/* --- 2 Колонка: Ссылки --- */
+.footer-col h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.footer-links a i {
+    font-size: 10px;
+    opacity: 0.5;
+}
+
+.footer-links a:hover {
+    color: #4dd0e1;
+    padding-left: 5px;
+}
+
+/* --- 3 Колонка: Контакты --- */
+.contact-info-list {
+    list-style: none;
+}
+
+.contact-info-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.contact-info-list li i {
+    margin-top: 3px;
+    color: #4dd0e1;
+}
+
+.contact-info-list a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.contact-info-list a:hover {
+    color: #4dd0e1;
+}
+
+/* --- Нижняя плашка: Авторские права --- */
+.footer-bottom {
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-bottom a {
+    color: #4dd0e1;
+    text-decoration: none;
+}
+
+.footer-bottom a:hover {
+    text-decoration: underline;
+}
+/* ==========================================================================
+    ФИНАЛЬНЫЙ АДАПТИВ ДЛЯ СМАРТФОНОВ (УБИРАЕМ ОБРЕЗКУ И МЕНЮ)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    
+    /* Убираем боковой скролл на мобилке, чтобы сайт не шатался */
+    html, body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+    }
+
+    /* 1. ИСПРАВЛЕНИЕ ШАПКИ И МЕНЮ */
+    .top-bar, header, div[class*="top"] {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        padding: 10px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Ссылки меню выстраиваем строго в столбик, чтобы они не улетали вправо */
+    .nav-links, ul[class*="nav"], nav ul {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 10px 0 !important;
+        gap: 10px !important;
+    }
+
+    .nav-links li, nav ul li {
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    .nav-links a, nav ul li a {
+        display: block !important;
+        padding: 8px 0 !important;
+        font-size: 15px !important; /* Делаем ссылки удобными для нажатия пальцем */
+    }
+
+    /* 2. ИСПРАВЛЕНИЕ ОБРЕЗАННОГО БАННЕРА И КНОПОК */
+    /* Главный баннер: разрешаем ему растягиваться под контент на мобилке */
+    .hero-banner, section[class*="hero"] {
+        height: auto !important;
+        min-height: 350px !important;
+        padding: 30px 10px 50px 10px !important;
+        position: relative !important;
+    }
+
+    /* Исправляем плашку со стрелочками и цветными кнопками (убираем обрезку) */
+    .quick-cards-container, 
+    div[class*="cards-container"], 
+    div[class*="buttons-wrapper"],
+    .hero-banner + div {
+        position: relative !important; /* Отменяем absolute/absolute нависание */
+        top: 0 !important;
+        bottom: 0 !important;
+        transform: none !important;
+        margin: 20px auto 0 auto !important;
+        display: flex !important;
+        flex-direction: column !important; /* Строго вертикально друг под друга */
+        align-items: center !important;
+        width: 95% !important;
+        max-width: 320px !important;
+        background-color: #0d4361 !important; /* Оставляем темно-синий фон подложки */
+        border-radius: 12px !important;
+        padding: 20px 10px !important;
+        box-sizing: border-box !important;
+        z-index: 99 !important;
+    }
+
+    /* Внутренние цветные кнопки внутри плашки */
+    .quick-card, 
+    .quick-cards-container > div,
+    div[class*="card-item"] {
+        width: 100% !important;
+        max-width: 280px !important;
+        margin: 5px 0 !important;
+        position: static !important;
+    }
+
+    /* Секция новостей, которая идет следом, теперь не будет налезать на кнопки */
+    .news-section, section[class*="news"] {
+        padding-top: 30px !important;
+        margin-top: 0 !important;
+    }
+}
